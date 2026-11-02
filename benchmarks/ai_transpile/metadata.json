@@ -1,0 +1,1787 @@
+{
+  "source_notebook": "notebooks/ai_transpile_variants.ipynb",
+  "description": "Reusable circuits distilled from the AI transpiler comparison notebook.",
+  "circuits": [
+    {
+      "name": "efficient_su2_10_r2",
+      "description": "Efficient Su2 ansatz on 10 qubits with 2 repetitions",
+      "tags": [
+        "efficient_su2",
+        "variational",
+        "vqe"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 17,
+        "two_qubit_gates": 18,
+        "two_qubit_depth": 11,
+        "total_gates": 78
+      },
+      "file": "qasm/efficient_su2_10_r2.qasm"
+    },
+    {
+      "name": "efficient_su2_12",
+      "file": "qasm/efficient_su2_12.qasm",
+      "description": "EfficientSU2 (full entanglement, 1 rep) on 12 qubits.",
+      "tags": [
+        "efficient_su2",
+        "ai_transpile_notebook"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 25,
+        "two_qubit_gates": 66,
+        "two_qubit_depth": 21,
+        "total_gates": 114
+      }
+    },
+    {
+      "name": "efficient_su2_12_r2",
+      "description": "Efficient Su2 ansatz on 12 qubits with 2 repetitions",
+      "tags": [
+        "efficient_su2",
+        "variational",
+        "vqe"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 19,
+        "two_qubit_gates": 22,
+        "two_qubit_depth": 13,
+        "total_gates": 94
+      },
+      "file": "qasm/efficient_su2_12_r2.qasm"
+    },
+    {
+      "name": "efficient_su2_16",
+      "file": "qasm/efficient_su2_16.qasm",
+      "description": "EfficientSU2 (full entanglement, 1 rep) on 16 qubits.",
+      "tags": [
+        "efficient_su2",
+        "qiskit_library"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 33,
+        "two_qubit_gates": 120,
+        "two_qubit_depth": 29,
+        "total_gates": 184
+      }
+    },
+    {
+      "name": "efficient_su2_8",
+      "file": "qasm/efficient_su2_8.qasm",
+      "description": "EfficientSU2 (full entanglement, 2 reps) on 8 qubits.",
+      "tags": [
+        "efficient_su2",
+        "qiskit_library"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 27,
+        "two_qubit_gates": 56,
+        "two_qubit_depth": 21,
+        "total_gates": 104
+      }
+    },
+    {
+      "name": "W-state",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 3,
+      "metrics": {
+        "depth": 6,
+        "two_qubit_gates": 2,
+        "total_gates": 9,
+        "two_qubit_depth": 2
+      },
+      "file": "qasm/feynman/W-state.qasm"
+    },
+    {
+      "name": "adder",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 11,
+        "two_qubit_gates": 1,
+        "total_gates": 19,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/adder.qasm"
+    },
+    {
+      "name": "barenco_tof_10",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 19,
+      "metrics": {
+        "depth": 98,
+        "two_qubit_gates": 0,
+        "total_gates": 130,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/barenco_tof_10.qasm"
+    },
+    {
+      "name": "barenco_tof_3",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 14,
+        "two_qubit_gates": 0,
+        "total_gates": 20,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/barenco_tof_3.qasm"
+    },
+    {
+      "name": "barenco_tof_4",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 7,
+      "metrics": {
+        "depth": 26,
+        "two_qubit_gates": 0,
+        "total_gates": 34,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/barenco_tof_4.qasm"
+    },
+    {
+      "name": "barenco_tof_5",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 38,
+        "two_qubit_gates": 0,
+        "total_gates": 50,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/barenco_tof_5.qasm"
+    },
+    {
+      "name": "bigadder",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 18,
+      "metrics": {
+        "depth": 4,
+        "two_qubit_gates": 0,
+        "total_gates": 21,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/bigadder.qasm"
+    },
+    {
+      "name": "csla_mux_3",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 15,
+      "metrics": {
+        "depth": 24,
+        "two_qubit_gates": 20,
+        "total_gates": 70,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/csla_mux_3.qasm"
+    },
+    {
+      "name": "gf2^4_mult",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 31,
+        "two_qubit_gates": 3,
+        "total_gates": 65,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/gf2^4_mult.qasm"
+    },
+    {
+      "name": "gf2^5_mult",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 15,
+      "metrics": {
+        "depth": 38,
+        "two_qubit_gates": 4,
+        "total_gates": 97,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/gf2^5_mult.qasm"
+    },
+    {
+      "name": "gf2^6_mult",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 18,
+      "metrics": {
+        "depth": 47,
+        "two_qubit_gates": 5,
+        "total_gates": 135,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/gf2^6_mult.qasm"
+    },
+    {
+      "name": "grover_5",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 160,
+        "two_qubit_gates": 0,
+        "total_gates": 351,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/grover_5.qasm"
+    },
+    {
+      "name": "ham15-high",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 20,
+      "metrics": {
+        "depth": 1022,
+        "two_qubit_gates": 43,
+        "total_gates": 1798,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/ham15-high.qasm"
+    },
+    {
+      "name": "ham15-low",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 17,
+      "metrics": {
+        "depth": 129,
+        "two_qubit_gates": 98,
+        "total_gates": 213,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/ham15-low.qasm"
+    },
+    {
+      "name": "ham15-med",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 17,
+      "metrics": {
+        "depth": 255,
+        "two_qubit_gates": 42,
+        "total_gates": 452,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/ham15-med.qasm"
+    },
+    {
+      "name": "hwb10",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 18050,
+        "two_qubit_gates": 9508,
+        "total_gates": 31764,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/hwb10.qasm"
+    },
+    {
+      "name": "hwb11",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 15,
+      "metrics": {
+        "depth": 52290,
+        "two_qubit_gates": 25855,
+        "total_gates": 87789,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/hwb11.qasm"
+    },
+    {
+      "name": "hwb12",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 20,
+      "metrics": {
+        "depth": 98611,
+        "two_qubit_gates": 44833,
+        "total_gates": 171482,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/hwb12.qasm"
+    },
+    {
+      "name": "hwb6",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 7,
+      "metrics": {
+        "depth": 62,
+        "two_qubit_gates": 26,
+        "total_gates": 109,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/hwb6.qasm"
+    },
+    {
+      "name": "hwb8",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 3855,
+        "two_qubit_gates": 2083,
+        "total_gates": 6446,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/hwb8.qasm"
+    },
+    {
+      "name": "inverseqft1",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 20,
+        "two_qubit_gates": 0,
+        "total_gates": 24,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/inverseqft1.qasm"
+    },
+    {
+      "name": "inverseqft2",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 12,
+        "two_qubit_gates": 0,
+        "total_gates": 19,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/inverseqft2.qasm"
+    },
+    {
+      "name": "mod5_4",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 23,
+        "two_qubit_gates": 4,
+        "total_gates": 23,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/mod5_4.qasm"
+    },
+    {
+      "name": "mod_mult_55",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 20,
+        "two_qubit_gates": 6,
+        "total_gates": 49,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/mod_mult_55.qasm"
+    },
+    {
+      "name": "mod_red_21",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 11,
+      "metrics": {
+        "depth": 58,
+        "two_qubit_gates": 3,
+        "total_gates": 108,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/mod_red_21.qasm"
+    },
+    {
+      "name": "qec",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 7,
+        "two_qubit_gates": 0,
+        "total_gates": 11,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/qec.qasm"
+    },
+    {
+      "name": "qft",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 9,
+        "two_qubit_gates": 6,
+        "total_gates": 17,
+        "two_qubit_depth": 5
+      },
+      "file": "qasm/feynman/qft.qasm"
+    },
+    {
+      "name": "qft_4",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 134,
+        "two_qubit_gates": 34,
+        "total_gates": 159,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/qft_4.qasm"
+    },
+    {
+      "name": "qpt",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 1,
+      "metrics": {
+        "depth": 4,
+        "two_qubit_gates": 0,
+        "total_gates": 6,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/qpt.qasm"
+    },
+    {
+      "name": "rb",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 2,
+      "metrics": {
+        "depth": 8,
+        "two_qubit_gates": 6,
+        "total_gates": 13,
+        "two_qubit_depth": 2
+      },
+      "file": "qasm/feynman/rb.qasm"
+    },
+    {
+      "name": "rc_adder_6",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 14,
+      "metrics": {
+        "depth": 40,
+        "two_qubit_gates": 27,
+        "total_gates": 90,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/rc_adder_6.qasm"
+    },
+    {
+      "name": "teleport",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 3,
+      "metrics": {
+        "depth": 9,
+        "two_qubit_gates": 2,
+        "total_gates": 12,
+        "two_qubit_depth": 2
+      },
+      "file": "qasm/feynman/teleport.qasm"
+    },
+    {
+      "name": "teleportv2",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 3,
+      "metrics": {
+        "depth": 10,
+        "two_qubit_gates": 2,
+        "total_gates": 13,
+        "two_qubit_depth": 2
+      },
+      "file": "qasm/feynman/teleportv2.qasm"
+    },
+    {
+      "name": "tof_10",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 19,
+      "metrics": {
+        "depth": 53,
+        "two_qubit_gates": 0,
+        "total_gates": 85,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/tof_10.qasm"
+    },
+    {
+      "name": "tof_3",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 11,
+        "two_qubit_gates": 0,
+        "total_gates": 15,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/tof_3.qasm"
+    },
+    {
+      "name": "tof_4",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 7,
+      "metrics": {
+        "depth": 17,
+        "two_qubit_gates": 0,
+        "total_gates": 25,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/tof_4.qasm"
+    },
+    {
+      "name": "tof_5",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 23,
+        "two_qubit_gates": 0,
+        "total_gates": 35,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/tof_5.qasm"
+    },
+    {
+      "name": "vbe_adder_3",
+      "description": "Feynman benchmark circuit",
+      "tags": [
+        "feynman",
+        "benchpress"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 28,
+        "two_qubit_gates": 10,
+        "total_gates": 50,
+        "two_qubit_depth": 0
+      },
+      "file": "qasm/feynman/vbe_adder_3.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N10_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 83,
+        "two_qubit_gates": 96,
+        "total_gates": 194,
+        "two_qubit_depth": 52
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N10_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N11_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 11,
+      "metrics": {
+        "depth": 86,
+        "two_qubit_gates": 108,
+        "total_gates": 217,
+        "two_qubit_depth": 54
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N11_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N12_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 89,
+        "two_qubit_gates": 120,
+        "total_gates": 240,
+        "two_qubit_depth": 56
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N12_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N13_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 13,
+      "metrics": {
+        "depth": 95,
+        "two_qubit_gates": 132,
+        "total_gates": 263,
+        "two_qubit_depth": 60
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N13_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N14_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 14,
+      "metrics": {
+        "depth": 98,
+        "two_qubit_gates": 144,
+        "total_gates": 286,
+        "two_qubit_depth": 62
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N14_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N15_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 15,
+      "metrics": {
+        "depth": 104,
+        "two_qubit_gates": 156,
+        "total_gates": 309,
+        "two_qubit_depth": 66
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N15_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N16_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 110,
+        "two_qubit_gates": 168,
+        "total_gates": 332,
+        "two_qubit_depth": 70
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N16_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N17_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 17,
+      "metrics": {
+        "depth": 119,
+        "two_qubit_gates": 180,
+        "total_gates": 355,
+        "two_qubit_depth": 76
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N17_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N18_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 18,
+      "metrics": {
+        "depth": 128,
+        "two_qubit_gates": 192,
+        "total_gates": 378,
+        "two_qubit_depth": 82
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N18_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N19_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 19,
+      "metrics": {
+        "depth": 140,
+        "two_qubit_gates": 204,
+        "total_gates": 401,
+        "two_qubit_depth": 90
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N19_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N20_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 20,
+      "metrics": {
+        "depth": 149,
+        "two_qubit_gates": 216,
+        "total_gates": 424,
+        "two_qubit_depth": 96
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N20_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N3_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 3,
+      "metrics": {
+        "depth": 23,
+        "two_qubit_gates": 12,
+        "total_gates": 33,
+        "two_qubit_depth": 12
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N3_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N4_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 41,
+        "two_qubit_gates": 24,
+        "total_gates": 56,
+        "two_qubit_depth": 24
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N4_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N5_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 53,
+        "two_qubit_gates": 36,
+        "total_gates": 79,
+        "two_qubit_depth": 32
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N5_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N6_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 6,
+      "metrics": {
+        "depth": 62,
+        "two_qubit_gates": 48,
+        "total_gates": 102,
+        "two_qubit_depth": 38
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N6_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N7_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 7,
+      "metrics": {
+        "depth": 65,
+        "two_qubit_gates": 60,
+        "total_gates": 125,
+        "two_qubit_depth": 40
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N7_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N8_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 68,
+        "two_qubit_gates": 72,
+        "total_gates": 148,
+        "two_qubit_depth": 42
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N8_3reps.qasm"
+    },
+    {
+      "name": "qaoa_barabasi_albert_N9_3reps",
+      "description": "Qaoa benchmark circuit",
+      "tags": [
+        "qaoa",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 77,
+        "two_qubit_gates": 84,
+        "total_gates": 171,
+        "two_qubit_depth": 48
+      },
+      "file": "qasm/qaoa/qaoa_barabasi_albert_N9_3reps.qasm"
+    },
+    {
+      "name": "qft_10",
+      "description": "Quantum Fourier Transform on 10 qubits",
+      "tags": [
+        "qft",
+        "algorithmic"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 74,
+        "two_qubit_gates": 105,
+        "two_qubit_depth": 37,
+        "total_gates": 250
+      },
+      "file": "qasm/qft_10.qasm"
+    },
+    {
+      "name": "qft_12",
+      "description": "Quantum Fourier Transform on 12 qubits",
+      "tags": [
+        "qft",
+        "algorithmic"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 90,
+        "two_qubit_gates": 150,
+        "two_qubit_depth": 45,
+        "total_gates": 360
+      },
+      "file": "qasm/qft_12.qasm"
+    },
+    {
+      "name": "qft_16",
+      "description": "Quantum Fourier Transform on 16 qubits",
+      "tags": [
+        "qft",
+        "algorithmic"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 122,
+        "two_qubit_gates": 264,
+        "two_qubit_depth": 61,
+        "total_gates": 640
+      },
+      "file": "qasm/qft_16.qasm"
+    },
+    {
+      "name": "qft_8",
+      "file": "qasm/qft_8.qasm",
+      "description": "QFT without swaps on 8 qubits (AI transpiler baseline).",
+      "tags": [
+        "qft",
+        "ai_transpile_notebook"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 15,
+        "two_qubit_gates": 28,
+        "two_qubit_depth": 13,
+        "total_gates": 36
+      }
+    },
+    {
+      "name": "qft_N002",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 2,
+      "metrics": {
+        "depth": 12,
+        "two_qubit_gates": 5,
+        "total_gates": 12,
+        "two_qubit_depth": 5
+      },
+      "file": "qasm/qft/qft_N002.qasm"
+    },
+    {
+      "name": "qft_N003",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 3,
+      "metrics": {
+        "depth": 20,
+        "two_qubit_gates": 9,
+        "total_gates": 24,
+        "two_qubit_depth": 9
+      },
+      "file": "qasm/qft/qft_N003.qasm"
+    },
+    {
+      "name": "qft_N004",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 28,
+        "two_qubit_gates": 18,
+        "total_gates": 44,
+        "two_qubit_depth": 13
+      },
+      "file": "qasm/qft/qft_N004.qasm"
+    },
+    {
+      "name": "qft_N005",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 36,
+        "two_qubit_gates": 26,
+        "total_gates": 66,
+        "two_qubit_depth": 17
+      },
+      "file": "qasm/qft/qft_N005.qasm"
+    },
+    {
+      "name": "qft_N006",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 6,
+      "metrics": {
+        "depth": 44,
+        "two_qubit_gates": 39,
+        "total_gates": 96,
+        "two_qubit_depth": 21
+      },
+      "file": "qasm/qft/qft_N006.qasm"
+    },
+    {
+      "name": "qft_N007",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 7,
+      "metrics": {
+        "depth": 52,
+        "two_qubit_gates": 51,
+        "total_gates": 128,
+        "two_qubit_depth": 25
+      },
+      "file": "qasm/qft/qft_N007.qasm"
+    },
+    {
+      "name": "qft_N008",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 60,
+        "two_qubit_gates": 68,
+        "total_gates": 168,
+        "two_qubit_depth": 29
+      },
+      "file": "qasm/qft/qft_N008.qasm"
+    },
+    {
+      "name": "qft_N009",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 68,
+        "two_qubit_gates": 84,
+        "total_gates": 210,
+        "two_qubit_depth": 33
+      },
+      "file": "qasm/qft/qft_N009.qasm"
+    },
+    {
+      "name": "qft_N010",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 76,
+        "two_qubit_gates": 105,
+        "total_gates": 260,
+        "two_qubit_depth": 37
+      },
+      "file": "qasm/qft/qft_N010.qasm"
+    },
+    {
+      "name": "qft_N011",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 11,
+      "metrics": {
+        "depth": 84,
+        "two_qubit_gates": 125,
+        "total_gates": 312,
+        "two_qubit_depth": 41
+      },
+      "file": "qasm/qft/qft_N011.qasm"
+    },
+    {
+      "name": "qft_N012",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 92,
+        "two_qubit_gates": 150,
+        "total_gates": 372,
+        "two_qubit_depth": 45
+      },
+      "file": "qasm/qft/qft_N012.qasm"
+    },
+    {
+      "name": "qft_N013",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 13,
+      "metrics": {
+        "depth": 100,
+        "two_qubit_gates": 174,
+        "total_gates": 434,
+        "two_qubit_depth": 49
+      },
+      "file": "qasm/qft/qft_N013.qasm"
+    },
+    {
+      "name": "qft_N014",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 14,
+      "metrics": {
+        "depth": 108,
+        "two_qubit_gates": 203,
+        "total_gates": 504,
+        "two_qubit_depth": 53
+      },
+      "file": "qasm/qft/qft_N014.qasm"
+    },
+    {
+      "name": "qft_N015",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 15,
+      "metrics": {
+        "depth": 116,
+        "two_qubit_gates": 231,
+        "total_gates": 576,
+        "two_qubit_depth": 57
+      },
+      "file": "qasm/qft/qft_N015.qasm"
+    },
+    {
+      "name": "qft_N016",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 124,
+        "two_qubit_gates": 264,
+        "total_gates": 656,
+        "two_qubit_depth": 61
+      },
+      "file": "qasm/qft/qft_N016.qasm"
+    },
+    {
+      "name": "qft_N017",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 17,
+      "metrics": {
+        "depth": 132,
+        "two_qubit_gates": 296,
+        "total_gates": 738,
+        "two_qubit_depth": 65
+      },
+      "file": "qasm/qft/qft_N017.qasm"
+    },
+    {
+      "name": "qft_N018",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 18,
+      "metrics": {
+        "depth": 140,
+        "two_qubit_gates": 333,
+        "total_gates": 828,
+        "two_qubit_depth": 69
+      },
+      "file": "qasm/qft/qft_N018.qasm"
+    },
+    {
+      "name": "qft_N019",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 19,
+      "metrics": {
+        "depth": 148,
+        "two_qubit_gates": 369,
+        "total_gates": 920,
+        "two_qubit_depth": 73
+      },
+      "file": "qasm/qft/qft_N019.qasm"
+    },
+    {
+      "name": "qft_N020",
+      "description": "Qft benchmark circuit",
+      "tags": [
+        "qft",
+        "benchpress"
+      ],
+      "num_qubits": 20,
+      "metrics": {
+        "depth": 156,
+        "two_qubit_gates": 410,
+        "total_gates": 1020,
+        "two_qubit_depth": 77
+      },
+      "file": "qasm/qft/qft_N020.qasm"
+    },
+    {
+      "name": "qv_N002_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 2,
+      "metrics": {
+        "depth": 46,
+        "two_qubit_gates": 6,
+        "total_gates": 86,
+        "two_qubit_depth": 6
+      },
+      "file": "qasm/qv/qv_N002_12345.qasm"
+    },
+    {
+      "name": "qv_N003_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 3,
+      "metrics": {
+        "depth": 69,
+        "two_qubit_gates": 9,
+        "total_gates": 129,
+        "two_qubit_depth": 9
+      },
+      "file": "qasm/qv/qv_N003_12345.qasm"
+    },
+    {
+      "name": "qv_N004_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 92,
+        "two_qubit_gates": 24,
+        "total_gates": 344,
+        "two_qubit_depth": 12
+      },
+      "file": "qasm/qv/qv_N004_12345.qasm"
+    },
+    {
+      "name": "qv_N005_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 5,
+      "metrics": {
+        "depth": 115,
+        "two_qubit_gates": 30,
+        "total_gates": 430,
+        "two_qubit_depth": 15
+      },
+      "file": "qasm/qv/qv_N005_12345.qasm"
+    },
+    {
+      "name": "qv_N006_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 6,
+      "metrics": {
+        "depth": 138,
+        "two_qubit_gates": 54,
+        "total_gates": 774,
+        "two_qubit_depth": 18
+      },
+      "file": "qasm/qv/qv_N006_12345.qasm"
+    },
+    {
+      "name": "qv_N007_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 7,
+      "metrics": {
+        "depth": 161,
+        "two_qubit_gates": 63,
+        "total_gates": 903,
+        "two_qubit_depth": 21
+      },
+      "file": "qasm/qv/qv_N007_12345.qasm"
+    },
+    {
+      "name": "qv_N008_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 184,
+        "two_qubit_gates": 96,
+        "total_gates": 1376,
+        "two_qubit_depth": 24
+      },
+      "file": "qasm/qv/qv_N008_12345.qasm"
+    },
+    {
+      "name": "qv_N009_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 207,
+        "two_qubit_gates": 108,
+        "total_gates": 1548,
+        "two_qubit_depth": 27
+      },
+      "file": "qasm/qv/qv_N009_12345.qasm"
+    },
+    {
+      "name": "qv_N010_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 230,
+        "two_qubit_gates": 150,
+        "total_gates": 2150,
+        "two_qubit_depth": 30
+      },
+      "file": "qasm/qv/qv_N010_12345.qasm"
+    },
+    {
+      "name": "qv_N011_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 11,
+      "metrics": {
+        "depth": 253,
+        "two_qubit_gates": 165,
+        "total_gates": 2365,
+        "two_qubit_depth": 33
+      },
+      "file": "qasm/qv/qv_N011_12345.qasm"
+    },
+    {
+      "name": "qv_N012_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 276,
+        "two_qubit_gates": 216,
+        "total_gates": 3096,
+        "two_qubit_depth": 36
+      },
+      "file": "qasm/qv/qv_N012_12345.qasm"
+    },
+    {
+      "name": "qv_N013_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 13,
+      "metrics": {
+        "depth": 299,
+        "two_qubit_gates": 234,
+        "total_gates": 3354,
+        "two_qubit_depth": 39
+      },
+      "file": "qasm/qv/qv_N013_12345.qasm"
+    },
+    {
+      "name": "qv_N014_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 14,
+      "metrics": {
+        "depth": 322,
+        "two_qubit_gates": 294,
+        "total_gates": 4214,
+        "two_qubit_depth": 42
+      },
+      "file": "qasm/qv/qv_N014_12345.qasm"
+    },
+    {
+      "name": "qv_N015_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 15,
+      "metrics": {
+        "depth": 345,
+        "two_qubit_gates": 315,
+        "total_gates": 4515,
+        "two_qubit_depth": 45
+      },
+      "file": "qasm/qv/qv_N015_12345.qasm"
+    },
+    {
+      "name": "qv_N016_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 368,
+        "two_qubit_gates": 384,
+        "total_gates": 5504,
+        "two_qubit_depth": 48
+      },
+      "file": "qasm/qv/qv_N016_12345.qasm"
+    },
+    {
+      "name": "qv_N017_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 17,
+      "metrics": {
+        "depth": 391,
+        "two_qubit_gates": 408,
+        "total_gates": 5848,
+        "two_qubit_depth": 51
+      },
+      "file": "qasm/qv/qv_N017_12345.qasm"
+    },
+    {
+      "name": "qv_N018_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 18,
+      "metrics": {
+        "depth": 414,
+        "two_qubit_gates": 486,
+        "total_gates": 6966,
+        "two_qubit_depth": 54
+      },
+      "file": "qasm/qv/qv_N018_12345.qasm"
+    },
+    {
+      "name": "qv_N019_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 19,
+      "metrics": {
+        "depth": 437,
+        "two_qubit_gates": 513,
+        "total_gates": 7353,
+        "two_qubit_depth": 57
+      },
+      "file": "qasm/qv/qv_N019_12345.qasm"
+    },
+    {
+      "name": "qv_N020_12345",
+      "description": "Qv benchmark circuit",
+      "tags": [
+        "qv",
+        "benchpress"
+      ],
+      "num_qubits": 20,
+      "metrics": {
+        "depth": 460,
+        "two_qubit_gates": 600,
+        "total_gates": 8600,
+        "two_qubit_depth": 60
+      },
+      "file": "qasm/qv/qv_N020_12345.qasm"
+    },
+    {
+      "name": "real_amplitudes_12",
+      "file": "qasm/real_amplitudes_12.qasm",
+      "description": "RealAmplitudes ansatz (2 reps) on 12 qubits.",
+      "tags": [
+        "real_amplitudes",
+        "qiskit_library"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 16,
+        "two_qubit_gates": 22,
+        "two_qubit_depth": 13,
+        "total_gates": 58
+      }
+    },
+    {
+      "name": "real_amplitudes_12_r3",
+      "description": "Real Amplitudes ansatz on 12 qubits with 3 repetitions",
+      "tags": [
+        "real_amplitudes",
+        "variational",
+        "vqe"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 19,
+        "two_qubit_gates": 33,
+        "two_qubit_depth": 15,
+        "total_gates": 81
+      },
+      "file": "qasm/real_amplitudes_12_r3.qasm"
+    },
+    {
+      "name": "real_amplitudes_16_r2",
+      "description": "Real Amplitudes ansatz on 16 qubits with 2 repetitions",
+      "tags": [
+        "real_amplitudes",
+        "variational",
+        "vqe"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 20,
+        "two_qubit_gates": 30,
+        "two_qubit_depth": 17,
+        "total_gates": 78
+      },
+      "file": "qasm/real_amplitudes_16_r2.qasm"
+    },
+    {
+      "name": "real_amplitudes_8",
+      "file": "qasm/real_amplitudes_8.qasm",
+      "description": "RealAmplitudes ansatz (3 reps) on 8 qubits.",
+      "tags": [
+        "real_amplitudes",
+        "qiskit_library"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 15,
+        "two_qubit_gates": 21,
+        "two_qubit_depth": 11,
+        "total_gates": 53
+      }
+    },
+    {
+      "name": "real_amplitudes_8_r2",
+      "description": "Real Amplitudes ansatz on 8 qubits with 2 repetitions",
+      "tags": [
+        "real_amplitudes",
+        "variational",
+        "vqe"
+      ],
+      "num_qubits": 8,
+      "metrics": {
+        "depth": 12,
+        "two_qubit_gates": 14,
+        "two_qubit_depth": 9,
+        "total_gates": 38
+      },
+      "file": "qasm/real_amplitudes_8_r2.qasm"
+    },
+    {
+      "name": "square_heisenberg_N16",
+      "description": "Square Heisenberg benchmark circuit",
+      "tags": [
+        "square-heisenberg",
+        "benchpress"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 361,
+        "two_qubit_gates": 288,
+        "total_gates": 1024,
+        "two_qubit_depth": 144
+      },
+      "file": "qasm/square-heisenberg/square_heisenberg_N16.qasm"
+    },
+    {
+      "name": "square_heisenberg_N4",
+      "description": "Square Heisenberg benchmark circuit",
+      "tags": [
+        "square-heisenberg",
+        "benchpress"
+      ],
+      "num_qubits": 4,
+      "metrics": {
+        "depth": 121,
+        "two_qubit_gates": 48,
+        "total_gates": 172,
+        "two_qubit_depth": 48
+      },
+      "file": "qasm/square-heisenberg/square_heisenberg_N4.qasm"
+    },
+    {
+      "name": "square_heisenberg_N9",
+      "description": "Square Heisenberg benchmark circuit",
+      "tags": [
+        "square-heisenberg",
+        "benchpress"
+      ],
+      "num_qubits": 9,
+      "metrics": {
+        "depth": 241,
+        "two_qubit_gates": 144,
+        "total_gates": 513,
+        "two_qubit_depth": 96
+      },
+      "file": "qasm/square-heisenberg/square_heisenberg_N9.qasm"
+    }
+  ]
+}

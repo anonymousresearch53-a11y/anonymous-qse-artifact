@@ -1,0 +1,40 @@
+# Database files
+*.db
+dbs/
+
+
+*zip
+
+*csv
+dbs/mqt/mqt_qasm_2/
+*.qasm
+!data/original_circuits/
+!data/original_circuits/**/*.qasm
+.env
+*.md
+*.drawio
+**/.pytest_cache/
+**/.ipynb_checkpoints/
+**/.mplconfig/
+data/artifacts/
+*.db-shm
+*.db-wal
+.DS_Store
+
+.DS_Store
+*tmp*
+
+# Local environments, dependencies, caches, and generated presentation output
+.venv-tket/
+node_modules/
+**/__pycache__/
+*.py[cod]
+.chart-data-*/
+.codex-build*/
+output/
+*.pptx
+
+# Internal review metadata and generated experiment artifacts
+.deep-review/
+**/artifacts/
+**/runs/

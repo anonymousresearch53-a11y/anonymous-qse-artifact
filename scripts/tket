@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# Convenience wrapper for running Python with the TKET environment
+#
+# Usage:
+#   ./scripts/tket script.py          # Run a script
+#   ./scripts/tket -c "import pytket"  # Run a command
+#   ./scripts/tket                    # Start interactive shell
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TKET_PYTHON="$REPO_ROOT/.venv-tket/bin/python"
+
+if [ ! -f "$TKET_PYTHON" ]; then
+    echo "Error: TKET environment not found!"
+    echo "Run: ./scripts/setup_tket_env.sh"
+    exit 1
+fi
+
+cd "$REPO_ROOT"
+PYTHONPATH="$REPO_ROOT" exec "$TKET_PYTHON" "$@"

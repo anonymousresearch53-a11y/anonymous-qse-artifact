@@ -1,0 +1,41 @@
+Already Utilized:
+- Number of qubits
+- category
+- depth
+- two qubit gate count 
+- total gate count 
+- two qubit depth 
+- two qubit ratio 
+
+
+Potential ones to try:
+    Types of Gates:
+    - rz gate count / percentage
+    - sx gate count / percentage
+    - x gate count / percentage
+    - cx gate count / percentage
+
+    Derived Ratios:
+    - two qubit gate fraction (two_qubit_gate count / num_gates)
+    - depth per qubit (depth / num_qubits)
+    - gates per qubit = (num_gates / num_qubits)
+    - two qubit per qubit (two_qubit_gate_count / num_qubits)
+
+    Current-state features:
+    - Depth reduction so far 
+    - two qubit reduction so far 
+    - runtime so far 
+
+    Action history features:
+    - last optimizer 
+    - used qiskit standard 
+    - used qiskit ai 
+    - used tket 
+    - used wisq wisq rules 
+    - used wisq bqskit 
+    - num optimizers used 
+
+    Qubit Interactions
+    - num interaction edges
+    - avg interaction degree
+    - max interaction degree

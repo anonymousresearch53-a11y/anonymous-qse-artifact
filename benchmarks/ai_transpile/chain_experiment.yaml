@@ -1,0 +1,269 @@
+# Chain Transformations Experiment Configuration
+#
+# This configuration defines experiments for running quantum circuit optimizers
+# in sequential chains, addressing RQ4: Can chaining multiple optimizers produce
+# better results than running them individually?
+#
+# Usage:
+#   uv run python -m benchmarks.ai_transpile.circuit_benchmark_runner \
+#     --config benchmarks/ai_transpile/chain_experiment.yaml \
+#     --output reports/chain_experiment
+
+metadata:
+  description: >
+    Chain transformation experiments comparing sequential optimizer combinations
+    against individual optimizer runs. Tests whether chaining optimizers produces
+    better optimization results than running single optimizers.
+  job_info: chain_experiment
+  default_output_dir: reports/chain_experiment
+
+# Select circuits for chain experiments
+# Using a subset of circuits to keep experiment runtime manageable
+circuits:
+  - name: qft_8
+    path: benchmarks/ai_transpile/qasm/qft_8.qasm
+    gate_set: IBMN
+    tags: [qft, algorithmic, chain_experiment]
+
+  - name: efficient_su2_12
+    path: benchmarks/ai_transpile/qasm/efficient_su2_12.qasm
+    gate_set: IBMN
+    tags: [efficient_su2, variational, chain_experiment]
+
+  - name: real_amplitudes_8_r2
+    path: benchmarks/ai_transpile/qasm/real_amplitudes_8_r2.qasm
+    gate_set: IBMN
+    tags: [real_amplitudes, variational, chain_experiment]
+
+runners:
+  # ==========================================================================
+  # Individual Baselines - for comparison against chains
+  # ==========================================================================
+
+  # Standard Qiskit transpiler at highest optimization level
+  - name: qiskit_standard_baseline
+    type: qiskit_standard
+    optimization_levels: [3]
+
+  # WISQ rules-only (fast, no resynthesis)
+  - name: wisq_rules_baseline
+    type: wisq
+    target_gateset: IBMN
+    optimization_objective: TWO_Q
+    approx_epsilon: 0  # Rules-only mode
+    opt_timeout: 180
+    output_dir: reports/chain_experiment/baselines/wisq_rules
+
+  # TKET peephole optimization
+  - name: tket_baseline
+    type: tket
+    gate_set: IBMN
+
+  # WISQ with BQSKit resynthesis (slower but potentially better optimization)
+  - name: wisq_bqskit_baseline
+    type: wisq
+    target_gateset: IBMN
+    optimization_objective: TWO_Q
+    approx_epsilon: 1e-10  # Enable BQSKit resynthesis
+    opt_timeout: 900
+    output_dir: reports/chain_experiment/baselines/wisq_bqskit
+
+  # ==========================================================================
+  # Chain Experiments - Sequential optimizer combinations (Rules-only)
+  # ==========================================================================
+
+  # Chain 1: Fast preprocessing + peephole optimization
+  # Hypothesis: WISQ rules can reduce gates, then TKET peephole can optimize further
+  - name: wisq_rules_then_tket
+    type: chain
+    steps:
+      - type: wisq
+        name: wisq_rules
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0  # Rules-only (fast)
+        opt_timeout: 180
+      - type: tket
+        name: tket_peephole
+        gate_set: IBMN
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/wisq_rules_then_tket
+
+  # Chain 2: Standard transpiler + rule-based cleanup
+  # Hypothesis: Qiskit standard provides good initial optimization, WISQ rules can clean up
+  - name: qiskit_then_wisq_rules
+    type: chain
+    steps:
+      - type: qiskit_standard
+        name: qiskit_opt3
+        optimization_levels: [3]
+      - type: wisq
+        name: wisq_cleanup
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0
+        opt_timeout: 180
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/qiskit_then_wisq_rules
+
+  # Chain 3: TKET + WISQ rules
+  # Hypothesis: TKET peephole first, then WISQ for additional rule-based optimizations
+  - name: tket_then_wisq_rules
+    type: chain
+    steps:
+      - type: tket
+        name: tket_peephole
+        gate_set: IBMN
+      - type: wisq
+        name: wisq_rules
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0
+        opt_timeout: 180
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/tket_then_wisq_rules
+
+  # Chain 4: Three-step chain - comprehensive optimization
+  # Hypothesis: Multiple complementary optimizations compound improvements
+  - name: qiskit_wisq_tket
+    type: chain
+    steps:
+      - type: qiskit_standard
+        name: qiskit_opt3
+        optimization_levels: [3]
+      - type: wisq
+        name: wisq_rules
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0
+        opt_timeout: 180
+      - type: tket
+        name: tket_peephole
+        gate_set: IBMN
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/qiskit_wisq_tket
+
+  # Chain 5: Double WISQ rules
+  # Hypothesis: Running rules twice may find additional optimizations
+  - name: wisq_rules_double
+    type: chain
+    steps:
+      - type: wisq
+        name: wisq_rules_1
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0
+        opt_timeout: 180
+      - type: wisq
+        name: wisq_rules_2
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0
+        opt_timeout: 180
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/wisq_rules_double
+
+  # ==========================================================================
+  # Chain Experiments - With BQSKit Resynthesis
+  # These chains use WISQ with BQSKit resynthesis (approx_epsilon: 1e-10)
+  # Note: Resynthesis is slower but can achieve better gate reduction
+  # ==========================================================================
+
+  # Chain 6: WISQ BQSKit resynthesis + TKET peephole
+  # Hypothesis: Heavy resynthesis followed by peephole optimization
+  - name: wisq_bqskit_then_tket
+    type: chain
+    steps:
+      - type: wisq
+        name: wisq_bqskit
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 1e-10  # Enable BQSKit resynthesis
+        opt_timeout: 900
+      - type: tket
+        name: tket_peephole
+        gate_set: IBMN
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/wisq_bqskit_then_tket
+
+  # Chain 7: TKET + WISQ BQSKit resynthesis
+  # Hypothesis: Peephole first, then heavy resynthesis
+  - name: tket_then_wisq_bqskit
+    type: chain
+    steps:
+      - type: tket
+        name: tket_peephole
+        gate_set: IBMN
+      - type: wisq
+        name: wisq_bqskit
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 1e-10
+        opt_timeout: 900
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/tket_then_wisq_bqskit
+
+  # Chain 8: WISQ rules → WISQ BQSKit resynthesis
+  # Hypothesis: Fast rules cleanup first, then heavy resynthesis on reduced circuit
+  - name: wisq_rules_then_bqskit
+    type: chain
+    steps:
+      - type: wisq
+        name: wisq_rules
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 0  # Rules-only (fast)
+        opt_timeout: 180
+      - type: wisq
+        name: wisq_bqskit
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 1e-10  # BQSKit resynthesis
+        opt_timeout: 900
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/wisq_rules_then_bqskit
+
+  # Chain 9: Qiskit → WISQ BQSKit resynthesis
+  # Hypothesis: Standard transpiler for initial routing, then resynthesis
+  - name: qiskit_then_wisq_bqskit
+    type: chain
+    steps:
+      - type: qiskit_standard
+        name: qiskit_opt3
+        optimization_levels: [3]
+      - type: wisq
+        name: wisq_bqskit
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 1e-10
+        opt_timeout: 900
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/qiskit_then_wisq_bqskit
+
+  # Chain 10: Three-step with BQSKit: Qiskit → WISQ BQSKit → TKET
+  # Hypothesis: Comprehensive optimization with resynthesis in the middle
+  - name: qiskit_bqskit_tket
+    type: chain
+    steps:
+      - type: qiskit_standard
+        name: qiskit_opt3
+        optimization_levels: [3]
+      - type: wisq
+        name: wisq_bqskit
+        target_gateset: IBMN
+        optimization_objective: TWO_Q
+        approx_epsilon: 1e-10
+        opt_timeout: 900
+      - type: tket
+        name: tket_peephole
+        gate_set: IBMN
+    save_intermediates: true
+    output_dir: reports/chain_experiment/chains/qiskit_bqskit_tket
+
+# Metrics to collect and compare
+metrics:
+  - depth
+  - two_qubit_gates
+  - two_qubit_depth
+  - total_gates
+
