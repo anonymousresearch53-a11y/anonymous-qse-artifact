@@ -1,0 +1,42 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.\nYour previous response failed validation because of formatting or schema compliance. Fix the format, but do not cite the validation issue as evidence. Only use circuit features, candidate priors, and similar-circuit evidence.\nValidation note for formatting only: selected_chain does not match the expected chain for chain_00. Expected [], got ['No optimization']",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 2.0000\ninitial_depth: 8.0000\ninitial_two_qubit_gates: 1.0000\ninitial_total_gates: 14.0000\ninitial_two_qubit_depth: 1.0000\ninitial_gate_density: 7.0000\ninitial_two_qubit_ratio: 0.0714\ninitial_rz_gate_fraction: 0.5714\ninitial_sx_gate_fraction: 0.0000\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.0714\ninitial_two_qubit_gate_fraction: 0.0714\ninitial_num_interaction_edges: 1.0000\ninitial_avg_interaction_degree: 1.0000\ninitial_max_interaction_degree: 1.0000\ninitial_active_interaction_qubits: 2.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 4.0000\ninitial_gates_per_qubit: 7.0000\ninitial_two_qubit_gates_per_qubit: 0.5000\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice: the circuit is already very small (2 qubits, depth 8, only 1 two-qubit gate), so optimizer passes have limited room to improve two-qubit count and may add runtime or risk no-op changes.\",\"reasoning_summary\":\"The query circuit has minimal entangling structure and low overall size, which makes aggressive optimization chains less evidence-supported. Since the objective heavily rewards two-qubit reduction but the circuit only contains one two-qubit gate, the expected upside is small while runtime and transformation risk remain. The no-optimization action is therefore the strongest evidence-based choice.\",\"confidence\":0.78,\"evidence_used\":[\"initial_num_qubits: 2\",\"initial_depth: 8\",\"initial_two_qubit_gates: 1\",\"initial_total_gates: 14\",\"initial_two_qubit_depth: 1\",\"initial_two_qubit_ratio: 0.0714\",\"initial_num_interaction_edges: 1\",\"initial_active_interaction_qubits: 2\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice: the circuit is already very small (2 qubits, depth 8, only 1 two-qubit gate), so optimizer passes have limited room to improve two-qubit count and may add runtime or risk no-op changes.",
+    "reasoning_summary": "The query circuit has minimal entangling structure and low overall size, which makes aggressive optimization chains less evidence-supported. Since the objective heavily rewards two-qubit reduction but the circuit only contains one two-qubit gate, the expected upside is small while runtime and transformation risk remain. The no-optimization action is therefore the strongest evidence-based choice.",
+    "confidence": 0.78,
+    "evidence_used": [
+      "initial_num_qubits: 2",
+      "initial_depth: 8",
+      "initial_two_qubit_gates: 1",
+      "initial_total_gates: 14",
+      "initial_two_qubit_depth: 1",
+      "initial_two_qubit_ratio: 0.0714",
+      "initial_num_interaction_edges: 1",
+      "initial_active_interaction_qubits: 2"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.207769582979381,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 903,
+    "output_tokens": 236,
+    "total_tokens": 1139
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_082a7fbc0df48e9d006a60f3b1411c81969ed882c1582da57d"
+  },
+  "from_cache": false
+}

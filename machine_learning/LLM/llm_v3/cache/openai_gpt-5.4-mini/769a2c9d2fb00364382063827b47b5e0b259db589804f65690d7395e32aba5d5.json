@@ -1,0 +1,43 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 10.0000\ninitial_depth: 11.0000\ninitial_two_qubit_gates: 18.0000\ninitial_total_gates: 18.0000\ninitial_two_qubit_depth: 11.0000\ninitial_gate_density: 1.8000\ninitial_two_qubit_ratio: 1.0000\ninitial_rz_gate_fraction: 0.0000\ninitial_sx_gate_fraction: 0.0000\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 1.0000\ninitial_two_qubit_gate_fraction: 1.0000\ninitial_num_interaction_edges: 9.0000\ninitial_avg_interaction_degree: 1.8000\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 10.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 1.1000\ninitial_gates_per_qubit: 1.8000\ninitial_two_qubit_gates_per_qubit: 1.8000\n\nOptimize-vs-Original Gate:\nrecommendation: optimize\nprobability_optimize: 0.781\nprobability_original: 0.219\nTreat this as a learned prior, not as a guaranteed answer.\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_02\",\"selected_chain\":[\"tket\"],\"predicted_tradeoff_summary\":\"Best evidence-supported choice is a single-pass tket optimization: likely to reduce two-qubit gates and depth on a CX-only circuit while keeping runtime moderate. The circuit is already dense and fully two-qubit, so a conservative optimizer is preferable over longer chains that may add runtime without clear extra benefit.\",\"reasoning_summary\":\"The learned prior recommends optimization, and the circuit is a 10-qubit, CX-only circuit with 18 two-qubit gates at depth 11, so there is clear room for simplification. Among the valid candidates, a single optimizer pass is the safest evidence-based choice because the objective values 2Q reduction most heavily, but also penalizes runtime. tket is a strong general-purpose optimizer, and using it alone avoids the extra runtime and uncertainty of multi-stage chains. No evidence here justifies a more complex chain over a single-pass optimizer.\",\"confidence\":0.63,\"evidence_used\":[\"probability_optimize: 0.781\",\"initial_num_qubits: 10.0000\",\"initial_depth: 11.0000\",\"initial_two_qubit_gates: 18.0000\",\"initial_two_qubit_gate_fraction: 1.0000\",\"initial_cx_gate_fraction: 1.0000\",\"initial_num_interaction_edges: 9.0000\",\"initial_active_interaction_qubits: 10.0000\",\"reward weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_02",
+    "selected_chain": [
+      "tket"
+    ],
+    "predicted_tradeoff_summary": "Best evidence-supported choice is a single-pass tket optimization: likely to reduce two-qubit gates and depth on a CX-only circuit while keeping runtime moderate. The circuit is already dense and fully two-qubit, so a conservative optimizer is preferable over longer chains that may add runtime without clear extra benefit.",
+    "reasoning_summary": "The learned prior recommends optimization, and the circuit is a 10-qubit, CX-only circuit with 18 two-qubit gates at depth 11, so there is clear room for simplification. Among the valid candidates, a single optimizer pass is the safest evidence-based choice because the objective values 2Q reduction most heavily, but also penalizes runtime. tket is a strong general-purpose optimizer, and using it alone avoids the extra runtime and uncertainty of multi-stage chains. No evidence here justifies a more complex chain over a single-pass optimizer.",
+    "confidence": 0.63,
+    "evidence_used": [
+      "probability_optimize: 0.781",
+      "initial_num_qubits: 10.0000",
+      "initial_depth: 11.0000",
+      "initial_two_qubit_gates: 18.0000",
+      "initial_two_qubit_gate_fraction: 1.0000",
+      "initial_cx_gate_fraction: 1.0000",
+      "initial_num_interaction_edges: 9.0000",
+      "initial_active_interaction_qubits: 10.0000",
+      "reward weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 3.027873042039573,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 880,
+    "output_tokens": 350,
+    "total_tokens": 1230
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_0985868821a76f8f006a60ffce95988195b904a0275f6711d7"
+  },
+  "from_cache": false
+}

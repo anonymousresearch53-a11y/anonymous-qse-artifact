@@ -1,0 +1,22 @@
+{
+  "category_counts": {
+    "clifford": 1,
+    "feynman": 27,
+    "guoq_ibmnew": 239,
+    "misc": 14,
+    "qaoa": 18,
+    "qft": 19,
+    "qv": 19,
+    "square-heisenberg": 3
+  },
+  "circuit_count": 340,
+  "row_count": 10200,
+  "seed": 42,
+  "source_csv": "./dbs/original_data/one_and_two_opt_master.csv",
+  "source_sha256": "963f5a7fb6c25acdab9cad809bafb6f207b2b5562804510c20c5531a0f0fdb5e",
+  "split_sizes": {
+    "test": 34,
+    "train": 272,
+    "validation": 34
+  }
+}

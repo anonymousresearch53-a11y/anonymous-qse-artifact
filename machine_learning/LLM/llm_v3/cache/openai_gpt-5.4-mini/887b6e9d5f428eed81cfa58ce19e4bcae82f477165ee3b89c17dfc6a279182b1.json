@@ -1,0 +1,41 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_02: tket\nchain_06: qiskit_standard -> tket\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_14: wisq_rules -> tket\nchain_18: wisq_bqskit -> tket\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 4.0000\ninitial_depth: 604.0000\ninitial_two_qubit_gates: 180.0000\ninitial_total_gates: 1232.0000\ninitial_two_qubit_depth: 122.0000\ninitial_gate_density: 308.0000\ninitial_two_qubit_ratio: 0.1461\ninitial_rz_gate_fraction: 0.5601\ninitial_sx_gate_fraction: 0.2922\ninitial_x_gate_fraction: 0.0016\ninitial_cx_gate_fraction: 0.1461\ninitial_two_qubit_gate_fraction: 0.1461\ninitial_num_interaction_edges: 3.0000\ninitial_avg_interaction_degree: 1.5000\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 4.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 151.0000\ninitial_gates_per_qubit: 308.0000\ninitial_two_qubit_gates_per_qubit: 45.0000\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_02\",\"selected_chain\":[\"tket\"],\"predicted_tradeoff_summary\":\"Best evidence-supported single-step optimizer choice for a 4-qubit, CX-heavy circuit with substantial depth and two-qubit gate count. tket is the safest strong default for reducing two-qubit gates and depth without adding extra runtime overhead from multi-stage chains.\",\"reasoning_summary\":\"The circuit is highly nontrivial (604 depth, 180 two-qubit gates, 122 two-qubit depth) and appears amenable to general-purpose circuit optimization. Among the valid candidates, a single tket pass is the most conservative optimizer with strong expected two-qubit and depth reduction. Multi-stage chains may sometimes improve results, but the prompt provides no evidence that they outperform tket here, and they likely increase runtime. No-optimization is weaker given the circuit size and gate profile.\",\"confidence\":0.62,\"evidence_used\":[\"initial_depth: 604.0000\",\"initial_two_qubit_gates: 180.0000\",\"initial_two_qubit_depth: 122.0000\",\"initial_two_qubit_ratio: 0.1461\",\"initial_num_qubits: 4.0000\",\"Valid Candidate Chains: chain_02: tket\",\"Objective weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_02",
+    "selected_chain": [
+      "tket"
+    ],
+    "predicted_tradeoff_summary": "Best evidence-supported single-step optimizer choice for a 4-qubit, CX-heavy circuit with substantial depth and two-qubit gate count. tket is the safest strong default for reducing two-qubit gates and depth without adding extra runtime overhead from multi-stage chains.",
+    "reasoning_summary": "The circuit is highly nontrivial (604 depth, 180 two-qubit gates, 122 two-qubit depth) and appears amenable to general-purpose circuit optimization. Among the valid candidates, a single tket pass is the most conservative optimizer with strong expected two-qubit and depth reduction. Multi-stage chains may sometimes improve results, but the prompt provides no evidence that they outperform tket here, and they likely increase runtime. No-optimization is weaker given the circuit size and gate profile.",
+    "confidence": 0.62,
+    "evidence_used": [
+      "initial_depth: 604.0000",
+      "initial_two_qubit_gates: 180.0000",
+      "initial_two_qubit_depth: 122.0000",
+      "initial_two_qubit_ratio: 0.1461",
+      "initial_num_qubits: 4.0000",
+      "Valid Candidate Chains: chain_02: tket",
+      "Objective weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.940991791023407,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 693,
+    "output_tokens": 300,
+    "total_tokens": 993
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_06cfced1bb198062006a61014604108196b4e108f76fa8be6c"
+  },
+  "from_cache": false
+}

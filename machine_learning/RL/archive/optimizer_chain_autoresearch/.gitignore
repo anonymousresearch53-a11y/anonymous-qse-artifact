@@ -1,0 +1,13 @@
+# Generated experiment state is valuable locally but should not be committed by
+# default. Source snapshots and summaries remain available under runs/.
+runs/*
+!runs/.gitkeep
+experiments.jsonl
+results.tsv
+champions.json
+pareto.json
+research_report.md
+*.tmp
+__pycache__/
+*.py[cod]
+.pytest_cache/

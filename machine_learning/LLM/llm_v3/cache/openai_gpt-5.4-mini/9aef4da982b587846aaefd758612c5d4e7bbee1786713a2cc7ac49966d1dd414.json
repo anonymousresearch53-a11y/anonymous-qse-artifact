@@ -1,0 +1,42 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.\nYour previous response failed validation because of formatting or schema compliance. Fix the format, but do not cite the validation issue as evidence. Only use circuit features, candidate priors, and similar-circuit evidence.\nValidation note for formatting only: selected_chain does not match the expected chain for chain_00. Expected [], got ['No optimization']",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_13: wisq_rules -> qiskit_standard\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 10.0000\ninitial_depth: 10.0000\ninitial_two_qubit_gates: 9.0000\ninitial_total_gates: 10.0000\ninitial_two_qubit_depth: 9.0000\ninitial_gate_density: 1.0000\ninitial_two_qubit_ratio: 0.9000\ninitial_rz_gate_fraction: 0.0000\ninitial_sx_gate_fraction: 0.0000\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.9000\ninitial_two_qubit_gate_fraction: 0.9000\ninitial_num_interaction_edges: 9.0000\ninitial_avg_interaction_degree: 1.8000\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 10.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 1.0000\ninitial_gates_per_qubit: 1.0000\ninitial_two_qubit_gates_per_qubit: 0.9000\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice: the circuit is already very small and sparse (10 qubits, depth 10, only 9 two-qubit gates), so there is limited evidence that a compiler pass chain will reliably improve the weighted score enough to offset runtime and possible outcome risk.\",\"reasoning_summary\":\"The query circuit has modest size and only 9 CX gates, with no obvious single-qubit simplification signals from the provided features. Since no candidate-specific performance evidence is given, the no-optimization action is the most evidence-supported and lowest-risk option for maximizing deterministic utility under mixed weighting.\",\"confidence\":0.74,\"evidence_used\":[\"initial_num_qubits: 10\",\"initial_depth: 10\",\"initial_two_qubit_gates: 9\",\"initial_total_gates: 10\",\"initial_two_qubit_ratio: 0.9\",\"initial_cx_gate_fraction: 0.9\",\"initial_two_qubit_depth: 9\",\"initial_gate_density: 1.0\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice: the circuit is already very small and sparse (10 qubits, depth 10, only 9 two-qubit gates), so there is limited evidence that a compiler pass chain will reliably improve the weighted score enough to offset runtime and possible outcome risk.",
+    "reasoning_summary": "The query circuit has modest size and only 9 CX gates, with no obvious single-qubit simplification signals from the provided features. Since no candidate-specific performance evidence is given, the no-optimization action is the most evidence-supported and lowest-risk option for maximizing deterministic utility under mixed weighting.",
+    "confidence": 0.74,
+    "evidence_used": [
+      "initial_num_qubits: 10",
+      "initial_depth: 10",
+      "initial_two_qubit_gates: 9",
+      "initial_total_gates: 10",
+      "initial_two_qubit_ratio: 0.9",
+      "initial_cx_gate_fraction: 0.9",
+      "initial_two_qubit_depth: 9",
+      "initial_gate_density: 1.0"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.235656083037611,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 756,
+    "output_tokens": 231,
+    "total_tokens": 987
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_06ffa9b2c839baf5006a6101d25460819096f854161b1c69f2"
+  },
+  "from_cache": false
+}

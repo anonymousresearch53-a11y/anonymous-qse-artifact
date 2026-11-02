@@ -1,0 +1,41 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_04: wisq_bqskit\nchain_08: qiskit_standard -> wisq_bqskit\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 3.0000\ninitial_depth: 29.0000\ninitial_two_qubit_gates: 7.0000\ninitial_total_gates: 43.0000\ninitial_two_qubit_depth: 7.0000\ninitial_gate_density: 14.3333\ninitial_two_qubit_ratio: 0.1628\ninitial_rz_gate_fraction: 0.5349\ninitial_sx_gate_fraction: 0.1860\ninitial_x_gate_fraction: 0.1163\ninitial_cx_gate_fraction: 0.1628\ninitial_two_qubit_gate_fraction: 0.1628\ninitial_num_interaction_edges: 3.0000\ninitial_avg_interaction_degree: 2.0000\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 3.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 9.6667\ninitial_gates_per_qubit: 14.3333\ninitial_two_qubit_gates_per_qubit: 2.3333\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice with no evidence that any optimizer chain will improve this small 3-qubit circuit enough to justify added runtime or risk. Avoids potential regression in two-qubit count, depth, or final outcome correction.\",\"reasoning_summary\":\"The circuit is already modest in size (3 qubits, depth 29, 7 two-qubit gates). No candidate-specific performance evidence is provided, so selecting an optimizer chain would be speculative. Given the objective weights, the strongest evidence-supported choice is the explicit no-optimization action, which guarantees no runtime overhead and avoids possible degradation in final outcome.\",\"confidence\":0.74,\"evidence_used\":[\"initial_num_qubits: 3.0000\",\"initial_depth: 29.0000\",\"initial_two_qubit_gates: 7.0000\",\"initial_total_gates: 43.0000\",\"initial_two_qubit_depth: 7.0000\",\"reward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\",\"Valid Candidate Chains list including chain_00: No optimization\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice with no evidence that any optimizer chain will improve this small 3-qubit circuit enough to justify added runtime or risk. Avoids potential regression in two-qubit count, depth, or final outcome correction.",
+    "reasoning_summary": "The circuit is already modest in size (3 qubits, depth 29, 7 two-qubit gates). No candidate-specific performance evidence is provided, so selecting an optimizer chain would be speculative. Given the objective weights, the strongest evidence-supported choice is the explicit no-optimization action, which guarantees no runtime overhead and avoids possible degradation in final outcome.",
+    "confidence": 0.74,
+    "evidence_used": [
+      "initial_num_qubits: 3.0000",
+      "initial_depth: 29.0000",
+      "initial_two_qubit_gates: 7.0000",
+      "initial_total_gates: 43.0000",
+      "initial_two_qubit_depth: 7.0000",
+      "reward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000",
+      "Valid Candidate Chains list including chain_00: No optimization"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.2376061659888364,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 717,
+    "output_tokens": 273,
+    "total_tokens": 990
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_0d5b0a248a8e223a006a6101ec00ac8190a41daf1d0fad7b3e"
+  },
+  "from_cache": false
+}

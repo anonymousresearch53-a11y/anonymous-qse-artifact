@@ -1,0 +1,39 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 10.0000\ninitial_depth: 41.0000\ninitial_two_qubit_gates: 135.0000\ninitial_total_gates: 175.0000\ninitial_two_qubit_depth: 37.0000\ninitial_gate_density: 17.5000\ninitial_two_qubit_ratio: 0.7714\ninitial_rz_gate_fraction: 0.0000\ninitial_sx_gate_fraction: 0.0000\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.7714\ninitial_two_qubit_gate_fraction: 0.7714\ninitial_num_interaction_edges: 45.0000\ninitial_avg_interaction_degree: 9.0000\ninitial_max_interaction_degree: 9.0000\ninitial_active_interaction_qubits: 10.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 4.1000\ninitial_gates_per_qubit: 17.5000\ninitial_two_qubit_gates_per_qubit: 13.5000\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice given no performance evidence for any optimizer chain. Avoids risking worse runtime or outcome correction without supported expectation of 2Q/depth gains.\",\"reasoning_summary\":\"The provided evidence describes only the circuit structure, not empirical results for any candidate chain. Since the objective depends on actual reductions and runtime, and no chain-specific evidence is given, the no-optimization action is the strongest evidence-supported choice. It minimizes the risk of negative outcome correction or unnecessary runtime overhead.\",\"confidence\":0.78,\"evidence_used\":[\"initial_depth: 41.0000\",\"initial_two_qubit_gates: 135.0000\",\"initial_two_qubit_depth: 37.0000\",\"initial_two_qubit_ratio: 0.7714\",\"No chain-specific benchmark or outcome evidence provided\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice given no performance evidence for any optimizer chain. Avoids risking worse runtime or outcome correction without supported expectation of 2Q/depth gains.",
+    "reasoning_summary": "The provided evidence describes only the circuit structure, not empirical results for any candidate chain. Since the objective depends on actual reductions and runtime, and no chain-specific evidence is given, the no-optimization action is the strongest evidence-supported choice. It minimizes the risk of negative outcome correction or unnecessary runtime overhead.",
+    "confidence": 0.78,
+    "evidence_used": [
+      "initial_depth: 41.0000",
+      "initial_two_qubit_gates: 135.0000",
+      "initial_two_qubit_depth: 37.0000",
+      "initial_two_qubit_ratio: 0.7714",
+      "No chain-specific benchmark or outcome evidence provided"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.0496645829989575,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 702,
+    "output_tokens": 193,
+    "total_tokens": 895
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_0f46b2135aa90957006a61026809f881909f5d86f2fd2f16b1"
+  },
+  "from_cache": false
+}

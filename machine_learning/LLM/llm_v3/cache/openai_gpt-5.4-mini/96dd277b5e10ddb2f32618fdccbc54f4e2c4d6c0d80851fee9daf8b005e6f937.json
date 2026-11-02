@@ -1,0 +1,40 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_04: wisq_bqskit\nchain_08: qiskit_standard -> wisq_bqskit\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 3.0000\ninitial_depth: 27.0000\ninitial_two_qubit_gates: 6.0000\ninitial_total_gates: 35.0000\ninitial_two_qubit_depth: 6.0000\ninitial_gate_density: 11.6667\ninitial_two_qubit_ratio: 0.1714\ninitial_rz_gate_fraction: 0.5714\ninitial_sx_gate_fraction: 0.2286\ninitial_x_gate_fraction: 0.0286\ninitial_cx_gate_fraction: 0.1714\ninitial_two_qubit_gate_fraction: 0.1714\ninitial_num_interaction_edges: 2.0000\ninitial_avg_interaction_degree: 1.3333\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 3.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 9.0000\ninitial_gates_per_qubit: 11.6667\ninitial_two_qubit_gates_per_qubit: 2.0000\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice with no unsupported assumptions. The circuit is already small (3 qubits, depth 27, 6 two-qubit gates), and there is no evidence provided about which optimizer chain would improve the mixed weighted score more reliably than preserving the current circuit.\",\"reasoning_summary\":\"The prompt provides only circuit features, not empirical performance data for the candidate chains. Since the objective emphasizes deterministic episode-utility with outcome correction, choosing an optimizer chain without evidence risks harming final score via runtime or outcome changes. The no-optimization action is the strongest evidence-supported option.\",\"confidence\":0.74,\"evidence_used\":[\"initial_num_qubits: 3.0000\",\"initial_depth: 27.0000\",\"initial_two_qubit_gates: 6.0000\",\"initial_total_gates: 35.0000\",\"reward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\",\"Valid Candidate Chains list includes chain_00: No optimization\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice with no unsupported assumptions. The circuit is already small (3 qubits, depth 27, 6 two-qubit gates), and there is no evidence provided about which optimizer chain would improve the mixed weighted score more reliably than preserving the current circuit.",
+    "reasoning_summary": "The prompt provides only circuit features, not empirical performance data for the candidate chains. Since the objective emphasizes deterministic episode-utility with outcome correction, choosing an optimizer chain without evidence risks harming final score via runtime or outcome changes. The no-optimization action is the strongest evidence-supported option.",
+    "confidence": 0.74,
+    "evidence_used": [
+      "initial_num_qubits: 3.0000",
+      "initial_depth: 27.0000",
+      "initial_two_qubit_gates: 6.0000",
+      "initial_total_gates: 35.0000",
+      "reward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000",
+      "Valid Candidate Chains list includes chain_00: No optimization"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.1519715830218047,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 717,
+    "output_tokens": 249,
+    "total_tokens": 966
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_06614fd6afba830e006a6101f953088190847e39676fc26163"
+  },
+  "from_cache": false
+}

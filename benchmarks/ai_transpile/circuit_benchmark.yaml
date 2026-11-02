@@ -1,0 +1,81 @@
+metadata:
+  description: >
+    Circuit benchmark experiment comparing multiple quantum circuit transpilers
+    on circuits derived from notebooks/ai_transpile_variants.ipynb.
+  source_notebook: notebooks/ai_transpile_variants.ipynb
+  default_output_dir: reports/circuit_benchmark
+  job_info: ai_suite
+
+circuits:
+  - name: qft_8
+    path: benchmarks/ai_transpile/qasm/qft_8.qasm
+    gate_set: IBMN
+    tags: [ai_transpile_notebook, qft]
+  - name: qft_10
+    path: benchmarks/ai_transpile/qasm/qft_10.qasm
+    gate_set: IBMN
+    tags: [qft, algorithmic]
+  - name: qft_12
+    path: benchmarks/ai_transpile/qasm/qft_12.qasm
+    gate_set: IBMN
+    tags: [qft, algorithmic]
+  - name: efficient_su2_12
+    path: benchmarks/ai_transpile/qasm/efficient_su2_12.qasm
+    gate_set: IBMN
+    tags: [ai_transpile_notebook, efficient_su2]
+  - name: real_amplitudes_8_r2
+    path: benchmarks/ai_transpile/qasm/real_amplitudes_8_r2.qasm
+    gate_set: IBMN
+    tags: [real_amplitudes, variational, vqe]
+  - name: real_amplitudes_12_r3
+    path: benchmarks/ai_transpile/qasm/real_amplitudes_12_r3.qasm
+    gate_set: IBMN
+    tags: [real_amplitudes, variational, vqe]
+
+runners:
+  - name: qiskit_ai
+    type: qiskit_ai
+    optimization_levels: [1, 2, 3]
+    iterations_per_level: 3
+    layout_mode: optimize
+  - name: qiskit_standard
+    type: qiskit_standard
+    optimization_levels: [1, 2, 3]
+  # WISQ runners (replaces direct GUOQ invocation)
+  # WISQ automatically manages resynthesis server lifecycle
+  #
+  # IMPORTANT: WISQ runners are SERIALIZED to prevent concurrent resynthesis servers
+  # - Only one WISQ job runs at a time (enforced by global lock)
+  # - Prevents port 8080 conflicts and BQSKit worker spawning race conditions
+  # - Automatic retry logic handles transient failures (3 attempts with exponential backoff)
+  # - Conservative worker count (20) via BQSKIT_NUM_WORKERS for stability
+  # - Expected runtime increase due to serialization, but improved reliability
+  #
+  - name: wisq_rules_only
+    type: wisq
+    target_gateset: IBMN
+    optimization_objective: TWO_Q
+    approx_epsilon: 0  # Rules-only mode (no resynthesis)
+    opt_timeout: 180
+    output_dir: reports/circuit_benchmark/wisq_rules_only
+  - name: wisq_bqskit
+    type: wisq
+    target_gateset: IBMN
+    optimization_objective: TWO_Q
+    approx_epsilon: 1e-10  # Enable BQSKit resynthesis
+    opt_timeout: 900
+    output_dir: reports/circuit_benchmark/wisq_bqskit
+  # Additional circuit optimizers for comparison benchmarks
+  # To enable TKET, install with: uv pip install pytket
+  # Note: pytket has a networkx conflict with qiskit-ibm-transpiler
+  # You may need to create a separate environment for TKET benchmarks
+  - name: tket_full_peephole
+    type: tket
+    gate_set: IBMN
+  # VOQC is currently blocked due to pyvoqc incompatibility with Qiskit 1.x
+  # Uncomment when pyvoqc is updated for newer Qiskit versions
+  # - name: voqc_nam
+  #   type: voqc
+  #   optimization_method: nam
+
+metrics: [depth, two_qubit_gates, two_qubit_depth, total_gates]

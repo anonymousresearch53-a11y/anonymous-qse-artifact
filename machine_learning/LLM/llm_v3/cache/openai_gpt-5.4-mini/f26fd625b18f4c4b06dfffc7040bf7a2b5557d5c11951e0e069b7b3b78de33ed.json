@@ -1,0 +1,41 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 12.0000\ninitial_depth: 12.0000\ninitial_two_qubit_gates: 11.0000\ninitial_total_gates: 12.0000\ninitial_two_qubit_depth: 11.0000\ninitial_gate_density: 1.0000\ninitial_two_qubit_ratio: 0.9167\ninitial_rz_gate_fraction: 0.0000\ninitial_sx_gate_fraction: 0.0000\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.9167\ninitial_two_qubit_gate_fraction: 0.9167\ninitial_num_interaction_edges: 11.0000\ninitial_avg_interaction_degree: 1.8333\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 12.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 1.0000\ninitial_gates_per_qubit: 1.0000\ninitial_two_qubit_gates_per_qubit: 0.9167\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice given the evidence: the circuit is already very small and highly two-qubit dominated, so an optimizer chain could easily add runtime without reliable additional reduction. No optimization avoids risking worse deterministic episode utility from unnecessary transformation overhead.\",\"reasoning_summary\":\"The provided circuit has only 12 qubits, depth 12, and 11 two-qubit gates out of 12 total gates, indicating a near-minimal, already-compact structure with little obvious room for guaranteed improvement from generic optimizers. Since no candidate-specific performance evidence is provided, the strongest evidence-supported decision is to avoid speculative optimization and preserve runtime while avoiding potential regressions in two-qubit count or final outcome correction.\",\"confidence\":0.74,\"evidence_used\":[\"initial_num_qubits: 12.0000\",\"initial_depth: 12.0000\",\"initial_two_qubit_gates: 11.0000\",\"initial_total_gates: 12.0000\",\"initial_two_qubit_gate_fraction: 0.9167\",\"initial_gate_density: 1.0000\",\"Objective weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice given the evidence: the circuit is already very small and highly two-qubit dominated, so an optimizer chain could easily add runtime without reliable additional reduction. No optimization avoids risking worse deterministic episode utility from unnecessary transformation overhead.",
+    "reasoning_summary": "The provided circuit has only 12 qubits, depth 12, and 11 two-qubit gates out of 12 total gates, indicating a near-minimal, already-compact structure with little obvious room for guaranteed improvement from generic optimizers. Since no candidate-specific performance evidence is provided, the strongest evidence-supported decision is to avoid speculative optimization and preserve runtime while avoiding potential regressions in two-qubit count or final outcome correction.",
+    "confidence": 0.74,
+    "evidence_used": [
+      "initial_num_qubits: 12.0000",
+      "initial_depth: 12.0000",
+      "initial_two_qubit_gates: 11.0000",
+      "initial_total_gates: 12.0000",
+      "initial_two_qubit_gate_fraction: 0.9167",
+      "initial_gate_density: 1.0000",
+      "Objective weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.3972064580302685,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 836,
+    "output_tokens": 280,
+    "total_tokens": 1116
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_0157a6b188b50626006a60f3d44e3081959a218a1ce6ffb3c9"
+  },
+  "from_cache": false
+}

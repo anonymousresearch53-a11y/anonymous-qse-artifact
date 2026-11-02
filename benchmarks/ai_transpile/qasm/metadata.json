@@ -1,0 +1,52 @@
+{
+  "circuits": [
+    {
+      "name": "qft_10",
+      "description": "Quantum Fourier Transform on 10 qubits",
+      "tags": [
+        "qft",
+        "algorithmic"
+      ],
+      "num_qubits": 10,
+      "metrics": {
+        "depth": 74,
+        "two_qubit_gates": 105,
+        "two_qubit_depth": 37,
+        "total_gates": 250
+      },
+      "file": "qasm/qft_10.qasm"
+    },
+    {
+      "name": "qft_12",
+      "description": "Quantum Fourier Transform on 12 qubits",
+      "tags": [
+        "qft",
+        "algorithmic"
+      ],
+      "num_qubits": 12,
+      "metrics": {
+        "depth": 90,
+        "two_qubit_gates": 150,
+        "two_qubit_depth": 45,
+        "total_gates": 360
+      },
+      "file": "qasm/qft_12.qasm"
+    },
+    {
+      "name": "qft_16",
+      "description": "Quantum Fourier Transform on 16 qubits",
+      "tags": [
+        "qft",
+        "algorithmic"
+      ],
+      "num_qubits": 16,
+      "metrics": {
+        "depth": 122,
+        "two_qubit_gates": 264,
+        "two_qubit_depth": 61,
+        "total_gates": 640
+      },
+      "file": "qasm/qft_16.qasm"
+    }
+  ]
+}

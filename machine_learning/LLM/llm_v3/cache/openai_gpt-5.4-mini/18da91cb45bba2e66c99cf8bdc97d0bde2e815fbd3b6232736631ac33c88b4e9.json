@@ -1,0 +1,43 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 16.0000\ninitial_depth: 31.0000\ninitial_two_qubit_gates: 17.0000\ninitial_total_gates: 48.0000\ninitial_two_qubit_depth: 17.0000\ninitial_gate_density: 3.0000\ninitial_two_qubit_ratio: 0.3542\ninitial_rz_gate_fraction: 0.5208\ninitial_sx_gate_fraction: 0.1250\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.3542\ninitial_two_qubit_gate_fraction: 0.3542\ninitial_num_interaction_edges: 3.0000\ninitial_avg_interaction_degree: 0.3750\ninitial_max_interaction_degree: 2.0000\ninitial_active_interaction_qubits: 3.0000\ninitial_active_interaction_qubit_fraction: 0.1875\ninitial_depth_per_qubit: 1.9375\ninitial_gates_per_qubit: 3.0000\ninitial_two_qubit_gates_per_qubit: 1.0625\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_02\",\"selected_chain\":[\"tket\"],\"predicted_tradeoff_summary\":\"Best evidence-supported single-pass choice for a 16-qubit, CX-heavy circuit with sparse interaction structure. tket is the safest candidate for reducing two-qubit gates while also likely improving depth without adding extra runtime from a second pass.\",\"reasoning_summary\":\"The circuit has only 3 active interaction qubits and 17 two-qubit gates out of 48 total, so the main opportunity is simplifying a small interaction subgraph. Among the provided options, tket is the strongest general-purpose optimizer for two-qubit reduction and depth improvement on structured circuits. A single optimizer pass is preferable here because the objective weights 2Q reduction most heavily, and the evidence does not justify a more speculative chained pipeline or no-optimization.\",\"confidence\":0.62,\"evidence_used\":[\"initial_num_qubits: 16\",\"initial_depth: 31\",\"initial_two_qubit_gates: 17\",\"initial_total_gates: 48\",\"initial_two_qubit_depth: 17\",\"initial_num_interaction_edges: 3\",\"initial_active_interaction_qubits: 3\",\"initial_two_qubit_ratio: 0.3542\",\"reward weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_02",
+    "selected_chain": [
+      "tket"
+    ],
+    "predicted_tradeoff_summary": "Best evidence-supported single-pass choice for a 16-qubit, CX-heavy circuit with sparse interaction structure. tket is the safest candidate for reducing two-qubit gates while also likely improving depth without adding extra runtime from a second pass.",
+    "reasoning_summary": "The circuit has only 3 active interaction qubits and 17 two-qubit gates out of 48 total, so the main opportunity is simplifying a small interaction subgraph. Among the provided options, tket is the strongest general-purpose optimizer for two-qubit reduction and depth improvement on structured circuits. A single optimizer pass is preferable here because the objective weights 2Q reduction most heavily, and the evidence does not justify a more speculative chained pipeline or no-optimization.",
+    "confidence": 0.62,
+    "evidence_used": [
+      "initial_num_qubits: 16",
+      "initial_depth: 31",
+      "initial_two_qubit_gates: 17",
+      "initial_total_gates: 48",
+      "initial_two_qubit_depth: 17",
+      "initial_num_interaction_edges: 3",
+      "initial_active_interaction_qubits: 3",
+      "initial_two_qubit_ratio: 0.3542",
+      "reward weights: 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.455649916024413,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 836,
+    "output_tokens": 293,
+    "total_tokens": 1129
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_09a09ed7c4e314ac006a60f3416c508197bc61ef996f5e76fd"
+  },
+  "from_cache": false
+}

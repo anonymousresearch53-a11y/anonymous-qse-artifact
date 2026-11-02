@@ -1,0 +1,43 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 4.0000\ninitial_depth: 54.0000\ninitial_two_qubit_gates: 24.0000\ninitial_total_gates: 108.0000\ninitial_two_qubit_depth: 24.0000\ninitial_gate_density: 27.0000\ninitial_two_qubit_ratio: 0.2222\ninitial_rz_gate_fraction: 0.5185\ninitial_sx_gate_fraction: 0.2593\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.2222\ninitial_two_qubit_gate_fraction: 0.2222\ninitial_num_interaction_edges: 4.0000\ninitial_avg_interaction_degree: 2.0000\ninitial_max_interaction_degree: 3.0000\ninitial_active_interaction_qubits: 4.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 13.5000\ninitial_gates_per_qubit: 27.0000\ninitial_two_qubit_gates_per_qubit: 6.0000\n\nOptimize-vs-Original Gate:\nrecommendation: optimize\nprobability_optimize: 1.000\nprobability_original: 0.000\nTreat this as a learned prior, not as a guaranteed answer.\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_06\",\"selected_chain\":[\"qiskit_standard\",\"tket\"],\"predicted_tradeoff_summary\":\"Likely a strong general-purpose optimization sequence for a 4-qubit, moderately deep circuit with substantial two-qubit content. Expected to reduce two-qubit gates and depth while keeping runtime reasonable; the second pass may capture simplifications missed by the first optimizer.\",\"reasoning_summary\":\"The circuit is clearly worth optimizing (prior probability 1.0). With 24 two-qubit gates and depth 54, the main objective is to reduce two-qubit count and depth. Among the provided candidates, a two-stage chain using qiskit_standard followed by tket is a conservative, evidence-aligned choice: qiskit_standard can normalize and simplify the circuit structure, and tket is generally strong at further gate and depth reduction. This balances the mixed-weight objective without assuming aggressive or unsupported transformations. No-optimization is disfavored because the learned prior strongly recommends optimization.\",\"confidence\":0.62,\"evidence_used\":[\"initial_depth: 54.0000\",\"initial_two_qubit_gates: 24.0000\",\"initial_two_qubit_depth: 24.0000\",\"initial_total_gates: 108.0000\",\"recommendation: optimize\",\"probability_optimize: 1.000\",\"probability_original: 0.000\",\"reward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_06",
+    "selected_chain": [
+      "qiskit_standard",
+      "tket"
+    ],
+    "predicted_tradeoff_summary": "Likely a strong general-purpose optimization sequence for a 4-qubit, moderately deep circuit with substantial two-qubit content. Expected to reduce two-qubit gates and depth while keeping runtime reasonable; the second pass may capture simplifications missed by the first optimizer.",
+    "reasoning_summary": "The circuit is clearly worth optimizing (prior probability 1.0). With 24 two-qubit gates and depth 54, the main objective is to reduce two-qubit count and depth. Among the provided candidates, a two-stage chain using qiskit_standard followed by tket is a conservative, evidence-aligned choice: qiskit_standard can normalize and simplify the circuit structure, and tket is generally strong at further gate and depth reduction. This balances the mixed-weight objective without assuming aggressive or unsupported transformations. No-optimization is disfavored because the learned prior strongly recommends optimization.",
+    "confidence": 0.62,
+    "evidence_used": [
+      "initial_depth: 54.0000",
+      "initial_two_qubit_gates: 24.0000",
+      "initial_two_qubit_depth: 24.0000",
+      "initial_total_gates: 108.0000",
+      "recommendation: optimize",
+      "probability_optimize: 1.000",
+      "probability_original: 0.000",
+      "reward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.621372458001133,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 880,
+    "output_tokens": 329,
+    "total_tokens": 1209
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_09968755d9fc9b5a006a6100df4a6881979efc795f09bfe032"
+  },
+  "from_cache": false
+}

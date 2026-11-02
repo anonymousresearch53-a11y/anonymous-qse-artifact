@@ -1,0 +1,42 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.\nYour previous response failed validation because of formatting or schema compliance. Fix the format, but do not cite the validation issue as evidence. Only use circuit features, candidate priors, and similar-circuit evidence.\nValidation note for formatting only: selected_chain does not match the expected chain for chain_00. Expected [], got ['No optimization']",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 16.0000\ninitial_depth: 163.0000\ninitial_two_qubit_gates: 107.0000\ninitial_total_gates: 289.0000\ninitial_two_qubit_depth: 99.0000\ninitial_gate_density: 18.0625\ninitial_two_qubit_ratio: 0.3702\ninitial_rz_gate_fraction: 0.5329\ninitial_sx_gate_fraction: 0.0969\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.3702\ninitial_two_qubit_gate_fraction: 0.3702\ninitial_num_interaction_edges: 10.0000\ninitial_avg_interaction_degree: 1.2500\ninitial_max_interaction_degree: 4.0000\ninitial_active_interaction_qubits: 5.0000\ninitial_active_interaction_qubit_fraction: 0.3125\ninitial_depth_per_qubit: 10.1875\ninitial_gates_per_qubit: 18.0625\ninitial_two_qubit_gates_per_qubit: 6.6875\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice: the circuit is already moderately structured with only 10 interaction edges and 5 active interaction qubits, so aggressive rewriting may not reliably improve two-qubit count enough to offset runtime and possible outcome risk. No optimization avoids unnecessary overhead and preserves the current circuit exactly.\",\"reasoning_summary\":\"The evidence does not strongly indicate that a specific optimizer chain will outperform the baseline on the mixed weighted score. The circuit has moderate depth and a moderate two-qubit ratio, but the interaction graph is relatively sparse and localized, which makes large deterministic gains uncertain. Given the objective includes runtime and final outcome correction, the no-optimization action is the most evidence-supported conservative choice.\",\"confidence\":0.62,\"evidence_used\":[\"initial_depth: 163\",\"initial_two_qubit_gates: 107\",\"initial_two_qubit_ratio: 0.3702\",\"initial_num_interaction_edges: 10\",\"initial_active_interaction_qubits: 5\",\"initial_avg_interaction_degree: 1.2500\",\"initial_max_interaction_degree: 4.0000\",\"initial_active_interaction_qubit_fraction: 0.3125\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice: the circuit is already moderately structured with only 10 interaction edges and 5 active interaction qubits, so aggressive rewriting may not reliably improve two-qubit count enough to offset runtime and possible outcome risk. No optimization avoids unnecessary overhead and preserves the current circuit exactly.",
+    "reasoning_summary": "The evidence does not strongly indicate that a specific optimizer chain will outperform the baseline on the mixed weighted score. The circuit has moderate depth and a moderate two-qubit ratio, but the interaction graph is relatively sparse and localized, which makes large deterministic gains uncertain. Given the objective includes runtime and final outcome correction, the no-optimization action is the most evidence-supported conservative choice.",
+    "confidence": 0.62,
+    "evidence_used": [
+      "initial_depth: 163",
+      "initial_two_qubit_gates: 107",
+      "initial_two_qubit_ratio: 0.3702",
+      "initial_num_interaction_edges: 10",
+      "initial_active_interaction_qubits: 5",
+      "initial_avg_interaction_degree: 1.2500",
+      "initial_max_interaction_degree: 4.0000",
+      "initial_active_interaction_qubit_fraction: 0.3125"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.6711627499898896,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 903,
+    "output_tokens": 262,
+    "total_tokens": 1165
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_03e96be75864a48b006a60fbb9c7e08196917786615cf679a0"
+  },
+  "from_cache": false
+}

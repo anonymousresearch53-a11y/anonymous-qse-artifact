@@ -1,0 +1,42 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.\nYour previous response failed validation because of formatting or schema compliance. Fix the format, but do not cite the validation issue as evidence. Only use circuit features, candidate priors, and similar-circuit evidence.\nValidation note for formatting only: selected_chain does not match the expected chain for chain_00. Expected [], got ['No optimization']",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_04: wisq_bqskit\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 16.0000\ninitial_depth: 52.0000\ninitial_two_qubit_gates: 32.0000\ninitial_total_gates: 109.0000\ninitial_two_qubit_depth: 31.0000\ninitial_gate_density: 6.8125\ninitial_two_qubit_ratio: 0.2936\ninitial_rz_gate_fraction: 0.5413\ninitial_sx_gate_fraction: 0.1651\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.2936\ninitial_two_qubit_gate_fraction: 0.2936\ninitial_num_interaction_edges: 9.0000\ninitial_avg_interaction_degree: 1.1250\ninitial_max_interaction_degree: 5.0000\ninitial_active_interaction_qubits: 6.0000\ninitial_active_interaction_qubit_fraction: 0.3750\ninitial_depth_per_qubit: 3.2500\ninitial_gates_per_qubit: 6.8125\ninitial_two_qubit_gates_per_qubit: 2.0000\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice given the circuit\u2019s modest interaction structure and limited evidence that a multi-stage optimizer will reliably improve the weighted score enough to offset runtime and possible regression risk.\",\"reasoning_summary\":\"The circuit has 16 qubits but only 32 two-qubit gates, 9 interaction edges, and just 6 active interaction qubits, suggesting a relatively sparse interaction pattern. With no circuit-specific evidence favoring a particular optimizer chain, the no-optimization action is the most evidence-supported conservative choice. This avoids unnecessary runtime and the risk of changing a circuit that may already be reasonably compact in two-qubit structure.\",\"confidence\":0.74,\"evidence_used\":[\"initial_num_qubits: 16\",\"initial_depth: 52\",\"initial_two_qubit_gates: 32\",\"initial_two_qubit_depth: 31\",\"initial_num_interaction_edges: 9\",\"initial_active_interaction_qubits: 6\",\"initial_active_interaction_qubit_fraction: 0.3750\",\"initial_two_qubit_ratio: 0.2936\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice given the circuit\u2019s modest interaction structure and limited evidence that a multi-stage optimizer will reliably improve the weighted score enough to offset runtime and possible regression risk.",
+    "reasoning_summary": "The circuit has 16 qubits but only 32 two-qubit gates, 9 interaction edges, and just 6 active interaction qubits, suggesting a relatively sparse interaction pattern. With no circuit-specific evidence favoring a particular optimizer chain, the no-optimization action is the most evidence-supported conservative choice. This avoids unnecessary runtime and the risk of changing a circuit that may already be reasonably compact in two-qubit structure.",
+    "confidence": 0.74,
+    "evidence_used": [
+      "initial_num_qubits: 16",
+      "initial_depth: 52",
+      "initial_two_qubit_gates: 32",
+      "initial_two_qubit_depth: 31",
+      "initial_num_interaction_edges: 9",
+      "initial_active_interaction_qubits: 6",
+      "initial_active_interaction_qubit_fraction: 0.3750",
+      "initial_two_qubit_ratio: 0.2936"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.3570966250263155,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 780,
+    "output_tokens": 243,
+    "total_tokens": 1023
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_08dd92521c452821006a61013ed164819680a17a355c0d9780"
+  },
+  "from_cache": false
+}

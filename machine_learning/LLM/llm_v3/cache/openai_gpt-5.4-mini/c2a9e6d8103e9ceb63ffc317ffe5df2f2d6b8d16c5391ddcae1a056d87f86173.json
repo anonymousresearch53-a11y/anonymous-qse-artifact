@@ -1,0 +1,41 @@
+{
+  "provider": "openai",
+  "model_name": "gpt-5.4-mini",
+  "system_prompt": "You are selecting a quantum-circuit optimizer chain. Choose exactly one candidate chain from the provided list. Optimize the provided objective using only the given evidence. Prefer the no-optimization action when the evidence does not justify an optimizer chain. Do not invent optimizers, chains, metrics, or evidence. Return a structured response that selects one valid chain.",
+  "user_prompt": "Choose the single best optimizer chain for the query circuit from the provided valid candidate list. You may choose the explicit no-optimization action if it looks safest or strongest.\n\nObjective:\nMaximize the deterministic episode-utility score used for RL comparison.\nHigher two-qubit reduction is better. Higher depth reduction is better. Lower runtime is better. The final optimized result also receives an outcome correction.\nreward_type=mixed_weighted, 2q_weight=1.000, depth_weight=0.100, runtime_weight=0.100, final_weight=1.000\n\nValid Candidate Chains:\nchain_01: qiskit_standard\nchain_02: tket\nchain_03: wisq_rules\nchain_04: wisq_bqskit\nchain_05: qiskit_standard -> qiskit_standard\nchain_06: qiskit_standard -> tket\nchain_07: qiskit_standard -> wisq_rules\nchain_08: qiskit_standard -> wisq_bqskit\nchain_09: tket -> qiskit_standard\nchain_10: tket -> tket\nchain_11: tket -> wisq_rules\nchain_12: tket -> wisq_bqskit\nchain_13: wisq_rules -> qiskit_standard\nchain_14: wisq_rules -> tket\nchain_15: wisq_rules -> wisq_rules\nchain_16: wisq_rules -> wisq_bqskit\nchain_17: wisq_bqskit -> qiskit_standard\nchain_18: wisq_bqskit -> tket\nchain_19: wisq_bqskit -> wisq_rules\nchain_20: wisq_bqskit -> wisq_bqskit\nchain_00: No optimization\n\nQuery Circuit:\ninitial_state_features:\ninitial_num_qubits: 18.0000\ninitial_depth: 130.0000\ninitial_two_qubit_gates: 292.0000\ninitial_total_gates: 672.0000\ninitial_two_qubit_depth: 78.0000\ninitial_gate_density: 37.3333\ninitial_two_qubit_ratio: 0.4345\ninitial_rz_gate_fraction: 0.4315\ninitial_sx_gate_fraction: 0.1339\ninitial_x_gate_fraction: 0.0000\ninitial_cx_gate_fraction: 0.4345\ninitial_two_qubit_gate_fraction: 0.4345\ninitial_num_interaction_edges: 73.0000\ninitial_avg_interaction_degree: 8.1111\ninitial_max_interaction_degree: 12.0000\ninitial_active_interaction_qubits: 18.0000\ninitial_active_interaction_qubit_fraction: 1.0000\ninitial_depth_per_qubit: 7.2222\ninitial_gates_per_qubit: 37.3333\ninitial_two_qubit_gates_per_qubit: 16.2222\n\nChoose exactly one candidate chain from the provided list. Reference the selected chain by its provided chain_id. Do not invent any optimizer or chain. Prefer the candidate with the strongest evidence-supported objective tradeoff, not just the highest expected 2Q reduction.",
+  "raw_response_text": "{\"selected_chain_id\":\"chain_00\",\"selected_chain\":[\"No optimization\"],\"predicted_tradeoff_summary\":\"Safest choice given no circuit-specific performance evidence for any optimizer chain. Avoids risking worse two-qubit count, depth, runtime, or final outcome correction on an already moderately dense 18-qubit circuit.\",\"reasoning_summary\":\"The prompt provides only static circuit features and no benchmark evidence for how qiskit_standard, tket, wisq_rules, or wisq_bqskit perform on this specific circuit. Since the objective heavily rewards two-qubit reduction and final outcome correction, but there is no evidence to justify any particular optimizer chain, the safest evidence-based selection is no optimization.\",\"confidence\":0.86,\"evidence_used\":[\"initial_num_qubits: 18.0000\",\"initial_depth: 130.0000\",\"initial_two_qubit_gates: 292.0000\",\"initial_total_gates: 672.0000\",\"initial_two_qubit_ratio: 0.4345\",\"No circuit-specific optimizer performance data provided\",\"Valid candidate list includes explicit no-optimization action\"]}",
+  "parsed_response": {
+    "selected_chain_id": "chain_00",
+    "selected_chain": [
+      "No optimization"
+    ],
+    "predicted_tradeoff_summary": "Safest choice given no circuit-specific performance evidence for any optimizer chain. Avoids risking worse two-qubit count, depth, runtime, or final outcome correction on an already moderately dense 18-qubit circuit.",
+    "reasoning_summary": "The prompt provides only static circuit features and no benchmark evidence for how qiskit_standard, tket, wisq_rules, or wisq_bqskit perform on this specific circuit. Since the objective heavily rewards two-qubit reduction and final outcome correction, but there is no evidence to justify any particular optimizer chain, the safest evidence-based selection is no optimization.",
+    "confidence": 0.86,
+    "evidence_used": [
+      "initial_num_qubits: 18.0000",
+      "initial_depth: 130.0000",
+      "initial_two_qubit_gates: 292.0000",
+      "initial_total_gates: 672.0000",
+      "initial_two_qubit_ratio: 0.4345",
+      "No circuit-specific optimizer performance data provided",
+      "Valid candidate list includes explicit no-optimization action"
+    ]
+  },
+  "success": true,
+  "error_message": null,
+  "latency_seconds": 2.1268192090210505,
+  "finish_reason": "completed",
+  "usage": {
+    "input_tokens": 836,
+    "output_tokens": 236,
+    "total_tokens": 1072
+  },
+  "response_metadata": {
+    "prompt_version": "v2_shortlisted_profiles",
+    "prompt_mode": "no_retrieval",
+    "schema_name": "chain_selection_v1",
+    "response_id": "resp_0bf2063dffb2c5e6006a60fc8ea0b48197a708ee655c9ebfd3"
+  },
+  "from_cache": false
+}
