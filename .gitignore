@@ -12,6 +12,7 @@ dbs/mqt/mqt_qasm_2/
 !data/original_circuits/**/*.qasm
 .env
 *.md
+!/README.md
 *.drawio
 **/.pytest_cache/
 **/.ipynb_checkpoints/
