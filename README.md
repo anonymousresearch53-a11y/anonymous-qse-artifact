@@ -56,19 +56,24 @@ two-step episode:
 ## Methods
 
 ### Data
-All original circuits used in this study are stored in `data/original_circuits`. Artifact circuits
-created from optimization of the initial circuits are not included in the repo because there are thousands of large files.
-All optimization run information is stored in `dbs/combined_master.csv` which is the dataset that is used for the machine learning
-workflows. 
+All original circuits used in this study are stored in `data/original_circuits`. Optimized circuit artifacts,
+optimization-run databases, generated feature CSVs, and model-response caches are not included in the repository.
+The analysis notebooks and scripts document how the derived results can be regenerated from the original circuits.
 
 Optimization results can be recomputed using `scripts/run_single_step_grid_search.py`.
 
 ### Brute-Force Optimizer Analysis
 
 All original circuits in the current dataset were optimized to chains of length 2 with all 4 optimizers.
-All single optimization runs are stored in `dbs/combined_fixed/data_single_opt/combined_single_opt.db`.
-All two optimizer runs are stored in `dbs/combined_fixed/data_second_opt.db`.
-Analysis of performance of the different optimizers and optimizer chains can be found in `data/analyze_data.ipynb`
+The analysis of individual optimizers and optimizer chains can be found in `data/analyze_data.ipynb`.
+
+### Hardware-aware evaluation
+
+The supplementary hardware-aware workflow targets a local FakeTorino backend and evaluates
+Qiskit Standard, Qiskit AI, TKET, and their ordered two-optimizer chains. It uses a
+646-circuit complete-case comparison and a distinct 64-circuit held-out test set for PPO.
+The associated implementation is in `machine_learning/RL/hardware_aware_two_opt_chain_rl/`,
+and the analysis is in `data/analyze_hardware_data.ipynb`.
 
 
 ### Reinforcement learning
@@ -86,9 +91,6 @@ of:
 - a runtime penalty; and
 - a terminal correction based on the final circuit relative to the original.
 
-See [`machine_learning/RL/two_opt_chain_rl_v4/README.md`](machine_learning/RL/two_opt_chain_rl_v4/README.md)
-for the environment, reward, feature-batch, training, and evaluation details.
-
 ### Supervised baselines
 
 The supervised-learning modules provide learned selection baselines, including
@@ -103,9 +105,6 @@ held-out evaluation protocol.
 decision space. It supports structured selection, candidate shortlisting,
 train-set chain profiles, retrieval features, and configurable objective
 weights.
-
-See [`machine_learning/LLM/llm_v3/README.md`](machine_learning/LLM/llm_v3/README.md)
-for prompt modes, experiment presets, and provider configuration.
 
 ## Evaluation protocol
 
@@ -141,10 +140,10 @@ From the repository root, rebuild the canonical dataset:
 ```bash
 python machine_learning/feature_extraction/build_combined_master.py
 ```
-Note: Optimization will need to be recomputed in order to rebuild the master files.
-    CSV files are included in this repo with the values we computed. If you want to use our values, you can skip this step.
+Note: optimization must be recomputed to rebuild the derived master files. The generated
+CSV and database outputs are intentionally excluded from this repository.
 
-The main dataset outputs are:
+The main generated outputs are:
 
 - `dbs/combined_master.csv`;
 - `machine_learning/feature_extraction/combined_master_features.csv`; and
@@ -177,10 +176,8 @@ python machine_learning/LLM/llm_v3/run_experiment.py \
 | Path | Role in the study |
 | --- | --- |
 | `data/original_circuits/` | Original QASM benchmark circuits. |
-| `data/artifacts/single_opt/` | Single-optimizer output artifacts. |
-| `data/artifacts/second_opt/` | Two-optimizer-chain output artifacts. |
-| `dbs/combined_fixed/` | Combined source SQLite databases. |
-| `dbs/combined_master.csv` | Canonical feature-complete dataset. |
+| `data/artifacts/` | Generated optimized-circuit artifacts; not included. |
+| `dbs/` | Generated optimization databases and derived datasets; not included. |
 | `machine_learning/feature_extraction/` | Dataset construction and feature extraction. |
 | `machine_learning/RL/two_opt_chain_rl_v4/` | Current RL method and audits. |
 | `machine_learning/supervised_learning/` | Supervised selection baselines. |
@@ -203,10 +200,3 @@ Older implementations are retained under `machine_learning/RL/archive/` and
 - Large QASM and artifact files may be stored with Git LFS and must be present
   locally before rebuilding the dataset.
 - The test split must remain untouched until the final evaluation.
-
-## Detailed documentation
-
-- [Feature extraction](machine_learning/feature_extraction/README.md)
-- [RL v4](machine_learning/RL/two_opt_chain_rl_v4/README.md)
-- [RL workflow audits](machine_learning/RL/two_opt_chain_rl_v4/tests/README.md)
-- [LLM v3](machine_learning/LLM/llm_v3/README.md)
